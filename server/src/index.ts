@@ -18,6 +18,21 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.error("MongoDB connection error:", error));
 
+// Quote interface
+interface Quote {
+  title: string;
+  message: string;
+}
+
+// Daily quote route
+app.get("/api/quote", (req, res) => {
+  const todayQuote: Quote = {
+    title: "Today's Inspiration",
+    message: "The only way to do great work is to love what you do.",
+  };
+  res.json(todayQuote);
+});
+
 // Basic route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the API" });
