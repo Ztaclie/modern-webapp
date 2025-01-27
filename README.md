@@ -55,13 +55,19 @@ npm install
 
 3. Environment Setup
 
-```bash
-# In the server directory, create a .env file
-cp .env.example .env
+Create `.env` files in both client and server directories:
 
-# In the client directory, create a .env file
-cd ../client
-cp .env.example .env
+Server `.env`:
+
+```env
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/myapp
+```
+
+Client `.env`:
+
+```env
+VITE_API_URL=http://localhost:3000
 ```
 
 ## 🚀 Development
@@ -72,6 +78,8 @@ cp .env.example .env
 
 ```bash
 cd server
+# First, add this script to package.json:
+# "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
 npm run dev
 ```
 
@@ -110,16 +118,14 @@ my-fullstack-app/
 npm run dev          # Start development server
 npm run build        # Build for production
 npm run preview      # Preview production build
-npm run test         # Run tests
 ```
 
 ### Backend
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
+npm run dev          # Start development server with ts-node-dev
+npm run build        # Build TypeScript to JavaScript
 npm run start        # Start production server
-npm run test         # Run tests
 ```
 
 ## 🌐 API Documentation
