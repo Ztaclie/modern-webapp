@@ -1,6 +1,6 @@
 # Modern Full-Stack Application Template
 
-A production-ready template for building modern web applications with React, Node.js, and MongoDB.
+A production-ready template for building modern web applications with React, Node.js, and MongoDB, featuring a daily inspiration quote system.
 
 ## 🚀 Tech Stack
 
@@ -21,6 +21,15 @@ A production-ready template for building modern web applications with React, Nod
 
 - Git Version Control
 - CI/CD with GitHub Actions
+
+## 🎯 Features
+
+- **Daily Quotes**: Display inspiring quotes fetched from the backend
+- Modern, responsive UI with Tailwind CSS
+- Full-stack TypeScript integration
+- Docker containerization
+- MongoDB database integration
+- Development and production configurations
 
 ## 📋 Prerequisites
 
@@ -78,8 +87,6 @@ VITE_API_URL=http://localhost:3000
 
 ```bash
 cd server
-# First, add this script to package.json:
-# "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
 npm run dev
 ```
 
@@ -90,9 +97,12 @@ cd client
 npm run dev
 ```
 
-### Using Docker
+3. Access the application:
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:3000
+   - Daily Quote API: http://localhost:3000/api/quote
 
-To run the entire application using Docker:
+### Using Docker
 
 ```bash
 docker-compose up --build
@@ -103,9 +113,17 @@ docker-compose up --build
 ```
 my-fullstack-app/
 ├── client/                 # Frontend React application
+│   ├── src/
+│   │   ├── components/    # React components
+│   │   │   └── DailyQuote.tsx
+│   │   ├── App.tsx
+│   │   └── main.tsx
 ├── server/                 # Backend Express application
+│   ├── src/
+│   │   └── index.ts      # Server setup and API routes
 ├── docker/                 # Docker configuration files
 ├── .github/               # GitHub Actions for CI/CD
+├── docker-compose.yml
 ├── .gitignore
 └── README.md
 ```
@@ -128,14 +146,12 @@ npm run build        # Build TypeScript to JavaScript
 npm run start        # Start production server
 ```
 
-## 🌐 API Documentation
+## 🔧 API Endpoints
 
 The API endpoints are available at `http://localhost:3000`
 
-Base endpoints:
-
 - GET `/` - Welcome message
-- Additional endpoints documentation coming soon...
+- GET `/api/quote` - Retrieve today's inspiration quote
 
 ## 🚀 Deployment
 
