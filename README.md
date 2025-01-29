@@ -146,12 +146,152 @@ npm run build        # Build TypeScript to JavaScript
 npm run start        # Start production server
 ```
 
-## 🔧 API Endpoints
+## 🔧 API Documentation
 
-The API endpoints are available at `http://localhost:3000`
+The API endpoints are available at `http://localhost:3000`. Below are examples for each endpoint with curl commands and expected responses.
 
-- GET `/` - Welcome message
-- GET `/api/quote` - Retrieve today's inspiration quote
+### Quotes API
+
+#### GET /api/quotes
+
+Retrieve all quotes.
+
+```bash
+curl http://localhost:3000/api/quotes
+```
+
+Response:
+
+```json
+[
+  {
+    "id": "1",
+    "title": "Success",
+    "message": "The only way to do great work is to love what you do.",
+    "author": "Steve Jobs"
+  }
+]
+```
+
+#### GET /api/quotes/:id
+
+Retrieve a specific quote.
+
+```bash
+curl http://localhost:3000/api/quotes/1
+```
+
+Response:
+
+```json
+{
+  "id": "1",
+  "title": "Success",
+  "message": "The only way to do great work is to love what you do.",
+  "author": "Steve Jobs"
+}
+```
+
+#### POST /api/quotes
+
+Create a new quote.
+
+```bash
+curl -X POST http://localhost:3000/api/quotes \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Innovation",
+    "message": "Innovation distinguishes between a leader and a follower.",
+    "author": "Steve Jobs"
+  }'
+```
+
+Response:
+
+```json
+{
+  "id": "1234567890",
+  "title": "Innovation",
+  "message": "Innovation distinguishes between a leader and a follower.",
+  "author": "Steve Jobs"
+}
+```
+
+#### PUT /api/quotes/:id
+
+Update an entire quote.
+
+```bash
+curl -X PUT http://localhost:3000/api/quotes/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Updated Title",
+    "message": "Updated message content",
+    "author": "New Author"
+  }'
+```
+
+Response:
+
+```json
+{
+  "id": "1",
+  "title": "Updated Title",
+  "message": "Updated message content",
+  "author": "New Author"
+}
+```
+
+#### PATCH /api/quotes/:id
+
+Partially update a quote.
+
+```bash
+curl -X PATCH http://localhost:3000/api/quotes/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Updated Title Only"
+  }'
+```
+
+Response:
+
+```json
+{
+  "id": "1",
+  "title": "Updated Title Only",
+  "message": "Original message remains",
+  "author": "Original author remains"
+}
+```
+
+#### DELETE /api/quotes/:id
+
+Delete a quote.
+
+```bash
+curl -X DELETE http://localhost:3000/api/quotes/1
+```
+
+Response:
+
+- Status: 204 No Content
+
+### Error Responses
+
+The API may return the following error responses:
+
+- 400 Bad Request: Invalid input data
+- 404 Not Found: Resource not found
+- 500 Internal Server Error: Server-side error
+
+Example error response:
+
+```json
+{
+  "message": "Quote not found"
+}
+```
 
 ## 🚀 Deployment
 
